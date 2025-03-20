@@ -57,4 +57,8 @@ async def cleanup():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    try:
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    finally:
+        # Clean up files when the application shuts down
+        pdf_processor.cleanup_files() 
